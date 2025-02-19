@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة الموظفين - HR System</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+
+    <div class="animated-bg"></div>
+
+    <div class="navbar">
+        🚀 نظام الموارد البشرية - HR System
+    </div>
+    <button class="space-mode" onclick="toggleSpaceMode()">🪐</button>
+
+    <div class="container">
+        <h1>👨‍💼 إدارة الموظفين - مرحبًا بك في HR!</h1>
+
+        <p>📢 <strong>إدارة الموظفين ليست مجرد وظيفة!</strong> إنها عملية بناء فريق رائع يساعد في نجاح الشركة! 💡</p>
+
+        <div class="dashboard">
+            <div class="card" id="totalEmployees">👥 عدد الموظفين: 0</div>
+            <div class="card" id="totalPresent">✅ الحضور اليوم: 0</div>
+            <div class="card" id="totalAbsent">❌ الغياب اليوم: 0</div>
+            <div class="card" id="totalSalary">💰 إجمالي المرتبات: 0 جنيه</div>
+        </div>
+
+        <h2>📝 تسجيل موظف جديد</h2>
+        <input type="text" id="name" placeholder="👤 اسم الموظف">
+        <input type="text" id="job" placeholder="💼 الوظيفة">
+        <input type="number" id="salary" placeholder="💰 الراتب الأساسي">
+        <input type="date" id="hireDate" placeholder="📅 تاريخ التعيين">
+        <select id="status">
+            <option value="أعزب">أعزب</option>
+            <option value="متزوج">متزوج</option>
+        </select>
+        <button onclick="addEmployee()">➕ إضافة موظف</button>
+
+        <h2>📋 قائمة الموظفين</h2>
+        <table id="employeeTable">
+            <thead>
+                <tr>
+                    <th>👤 الاسم</th>
+                    <th>💼 الوظيفة</th>
+                    <th>💰 الراتب</th>
+                    <th>📅 تاريخ التوظيف</th>
+                    <th>📊 الحضور</th>
+                    <th>🛠️ الإجراء</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <h2>📂 تقارير الموظفين</h2>
+        <button onclick="exportToExcel()">📂 تحميل Excel</button>
+        <button onclick="exportToPDF()">📄 تحميل PDF</button>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
