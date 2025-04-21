@@ -132,6 +132,12 @@ body {
 .link a:hover {
     color: #8e44ad;
 }
+ .otp-message {
+            margin-top: 15px;
+            color: green;
+            font-weight: bold;
+            display: none;
+        }
 	
 	
 	
@@ -167,9 +173,10 @@ body {
                 </div>
                 <div class="input-box">
                     <i class="fas fa-mobile-alt"></i>
-                    <input type="text" placeholder="number" required>
-                    <button type="button" class="otp-btn">Send OTP</button>
+                    <input type="text" placeholder="Number" required>
+                    <button type="button" class="otp-btn" id="sendOtp">Send OTP</button>
                 </div>
+                <div class="otp-message" id="otpMessage">OTP has been sent to your number!</div>
                 <button type="submit" class="btn">Sign Up</button>
                 <div class="link">
                     <p>Already have an account? <a href="index.html">Login</a></p>
@@ -177,6 +184,15 @@ body {
             </form>
         </div>
     </div>
-    <script src="scripts.js"></script>
+    <script>
+        // عند الضغط على زر Send OTP
+        document.getElementById('sendOtp').addEventListener('click', function() {
+            const otpMessage = document.getElementById('otpMessage');
+            otpMessage.style.display = 'block'; // إظهار الرسالة
+            setTimeout(() => {
+                otpMessage.style.display = 'none'; // إخفاء الرسالة بعد 5 ثواني
+            }, 5000);
+        });
+    </script>
 </body>
 </html>
