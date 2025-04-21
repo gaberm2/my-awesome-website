@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>حول النظام | نظام إدارة الموارد البشرية</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+    * {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+        background: linear-gradient(120deg, #2980b9, #8e44ad);
+        color: #fff;
+        min-height: 100vh;
+    }
+    
+    .navbar {
+        background: rgba(0, 0, 0, 0.7) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .navbar-brand {
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: #fff !important;
+    }
+    
+    .nav-link {
+        color: #fff !important;
+        font-size: 1.1rem;
+        margin: 0 8px;
+        transition: all 0.3s;
+        position: relative;
+    }
+    
+    .nav-link:hover {
+        color: #ffc107 !important;
+    }
+    
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        right: 0;
+        background-color: #ffc107;
+        transition: width 0.3s;
+    }
+    
+    .nav-link:hover::after {
+        width: 100%;
+        left: 0;
+    }
+    
+    .about-section {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 50px;
+        border-radius: 15px;
+        margin: 100px auto 50px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .section-title {
+        color: #2980b9;
+        font-weight: bold;
+        margin-bottom: 30px;
+        text-align: center;
+        font-size: 2.5rem;
+    }
+    
+    .about-text {
+        color: #333;
+        font-size: 1.2rem;
+        line-height: 1.8;
+        margin-bottom: 30px;
+    }
+    
+    .feature-box {
+        background: #fff;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s;
+    }
+    
+    .feature-box:hover {
+        transform: translateY(-5px);
+    }
+    
+    .feature-icon {
+        font-size: 2.5rem;
+        color: #8e44ad;
+        margin-bottom: 20px;
+    }
+    
+    .feature-title {
+        color: #2980b9;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+    
+    .team-section {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 50px 0;
+        margin: 50px 0;
+        border-radius: 15px;
+    }
+    
+    .team-card {
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s;
+        margin-bottom: 30px;
+    }
+    
+    .team-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .team-img {
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+    }
+    
+    .team-info {
+        padding: 20px;
+        text-align: center;
+    }
+    
+    .team-name {
+        color: #2980b9;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    
+    .team-position {
+        color: #8e44ad;
+        font-weight: 500;
+        margin-bottom: 15px;
+    }
+    
+    .quote-box {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        padding: 30px;
+        margin: 40px auto;
+        position: relative;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .quote-box::before {
+        content: '\201C';
+        font-size: 5rem;
+        color: rgba(41, 128, 185, 0.1);
+        position: absolute;
+        top: 10px;
+        right: 20px;
+    }
+    
+    .quote-text {
+        font-size: 1.3rem;
+        color: #333;
+        font-style: italic;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .quote-author {
+        color: #2980b9;
+        font-weight: bold;
+        text-align: left;
+    }
+    
+    .image-box {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s;
+    }
+    
+    .image-box:hover {
+        transform: scale(1.03);
+    }
+    
+    footer {
+        background: rgba(0, 0, 0, 0.8);
+        padding: 30px 0;
+        color: #fff;
+        text-align: center;
+        margin-top: 50px;
+    }
+    
+    .footer-links a {
+        color: #fff;
+        margin: 0 15px;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+        color: #ffc107;
+    }
+    
+    .social-icons a {
+        color: #fff;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: color 0.3s;
+    }
+    
+    .social-icons a:hover {
+        color: #ffc107;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-users-cog me-2"></i>نظام الموارد البشرية
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i> الصفحة الرئيسية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt me-1"></i> تسجيل الدخول</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.html"><i class="fas fa-user-plus me-1"></i> تسجيل الموظف</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html"><i class="fas fa-info-circle me-1"></i> حول النظام</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="login.html" class="btn btn-outline-warning"><i class="fas fa-lock me-1"></i> دخول المدير</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- قسم حول النظام -->
+    <div class="container">
+        <div class="about-section">
+            <h2 class="section-title">حول نظام إدارة الموارد البشرية</h2>
+            <p class="about-text">
+                نظام إدارة الموارد البشرية هو حل متكامل صمم لتبسيط وتنظيم جميع العمليات المتعلقة بإدارة الموظفين في المنظمات. يهدف النظام إلى تحويل العمليات اليدوية المعقدة إلى عمليات رقمية سهلة وآمنة، مما يوفر الوقت والجهد ويزيد من كفاءة العمل.
+            </p>
+            <p class="about-text">
+                إدارة الموظفين هي العملية التي يضمن من خلالها أصحاب العمل أداء موظفيهم لوظائفهم بأفضل ما لديهم لتحقيق أهداف العمل. وعادةً ما تتضمن بناء علاقات جيدة مع الموظفين والحفاظ عليها، بالإضافة إلى مراقبة عملهم اليومي وقياس تقدمهم. وبهذه الطريقة، يمكن لأصحاب العمل تحديد فرص التحسين وتقدير الإنجازات.
+            </p>
+            
+            <div class="row mt-5">
+                <div class="col-md-4">
+                    <div class="feature-box text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3 class="feature-title">تحليلات متقدمة</h3>
+                        <p>تقديم تقارير وتحليلات دقيقة تساعد في اتخاذ القرارات الإدارية الصحيحة</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-box text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="feature-title">أمان وحماية</h3>
+                        <p>نظام آمن مع صلاحيات متعددة المستويات لحماية بيانات الموظفين الحساسة</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-box text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3 class="feature-title">توفير الوقت</h3>
+                        <p>أتمتة العمليات الروتينية لتوفير وقت المديرين والموظفين على حد سواء</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- قسم الاقتباس -->
+        <div class="quote-box">
+            <p class="quote-text">
+                "إدارة الموظفين ليست مجرد وظيفة، إنها عملية بناء فريق رائع يساعد في نجاح الشركة. نظامنا صمم ليسهل عليك هذه المهمة ويساعدك على التركيز على ما هو أهم - تطوير موظفيك وبناء ثقافة عمل إيجابية."
+            </p>
+            <p class="quote-author">— فريق تطوير النظام</p>
+            
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="image-box">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="فريق العمل" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="image-box">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="اجتماع عمل" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- قسم فريق العمل -->
+        <div class="team-section">
+            <div class="container">
+                <h2 class="section-title">فريق التطوير</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="team-card">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="عضو الفريق" class="team-img">
+                            <div class="team-info">
+                                <h4 class="team-name">أحمد محمد</h4>
+                                <p class="team-position">مدير المشروع</p>
+                                <p>خبرة 10 سنوات في تطوير أنظمة إدارة الموارد البشرية</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="team-card">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="عضو الفريق" class="team-img">
+                            <div class="team-info">
+                                <h4 class="team-name">سارة عبدالله</h4>
+                                <p class="team-position">مصممة واجهات المستخدم</p>
+                                <p>متخصصة في تجربة المستخدم وتصميم الواجهات التفاعلية</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="team-card">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="عضو الفريق" class="team-img">
+                            <div class="team-info">
+                                <h4 class="team-name">خالد سعيد</h4>
+                                <p class="team-position">مطور النظام</p>
+                                <p>خبير في تقنيات الويب وقواعد البيانات</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- تذييل الصفحة -->
+    <footer>
+        <div class="container">
+            <div class="footer-links mb-4">
+                <a href="index.html">الصفحة الرئيسية</a>
+                <a href="about.html">حول النظام</a>
+                <a href="#">سياسة الخصوصية</a>
+                <a href="#">الشروط والأحكام</a>
+                <a href="contact.html">اتصل بنا</a>
+            </div>
+            <div class="social-icons mb-4">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="mb-0">جميع الحقوق محفوظة &copy; 2023 نظام إدارة الموارد البشرية</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
