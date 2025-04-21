@@ -1,105 +1,86 @@
-let employees = JSON.parse(localStorage.getItem("employees")) || [];
+// Global variables to simulate a basic database for demonstration purposes
+const users = [];
+let otpStorage = {}; // Store OTPs temporarily
 
-function saveData() {
-    localStorage.setItem("employees", JSON.stringify(employees));
+// Utility functions
+function generateOTP() {
+    return Math.floor(100000 + Math.random() * 900000); // Generate a 6-digit OTP
 }
 
-function addEmployee() {
-    let name = document.getElementById("name").value;
-    let job = document.getElementById("job").value;
-    let salary = document.getElementById("salary").value;
-    let hireDate = document.getElementById("hireDate").value;
+function validateEmail(email) {
+    const regex = /^[\w-\.]+@[\w-]+\.[a-z]{2,}$/i;
+    return regex.test(email);
+}
 
-    if (name === "" || job === "" || salary === "" || hireDate === "") {
-        alert("⚠️ من فضلك أدخل جميع البيانات");
+// Registration Page Functionality
+function registerUser(email, firstName, lastName, number) {
+    if (!validateEmail(email)) {
+        console.error("Invalid email address.");
         return;
     }
-
-    let employee = { name, job, salary, hireDate, attendance: "❌ لم يحضر" };
-    employees.push(employee);
-    saveData();
-    updateTable();
+    const otp = generateOTP();
+    otpStorage[email] = otp; // Save OTP temporarily
+    console.log(`OTP sent to ${email}: ${otp}`); // Simulating OTP sending
+    return otp;
 }
 
-function updateTable() {
-    let tableBody = document.querySelector("#employeeTable tbody");
-    tableBody.innerHTML = "";
-
-    let totalSalary = 0;
-    let presentCount = 0;
-
-    employees.forEach((emp, index) => {
-        if (emp.attendance === "✅ حضر") presentCount++;
-        totalSalary += parseInt(emp.salary);
-
-        let row = `
-            <tr>
-                <td>${emp.name}</td>
-                <td>${emp.job}</td>
-                <td>${emp.salary} جنيه</td>
-                <td>${emp.hireDate}</td>
-                <td>${emp.attendance}</td>
-                <td><button onclick="deleteEmployee(${index})">🗑️ حذف</button></td>
-            </tr>
-        `;
-        tableBody.innerHTML += row;
-    });
-
-    document.getElementById("totalSalary").innerText = `💰 إجمالي المرتبات: ${totalSalary} جنيه`;
-}
-
-function exportToExcel() {
-    let wb = XLSX.utils.book_new();
-    let ws = XLSX.utils.json_to_sheet(employees);
-    XLSX.utils.book_append_sheet(wb, ws, "Employees");
-    XLSX.writeFile(wb, "Employee_Report.xlsx");
-}
-
-function exportToPDF() {
-    let doc = new jsPDF();
-    doc.text("📄 تقرير الموظفين", 20, 20);
-    employees.forEach((emp, index) => {
-        doc.text(`${index + 1}. ${emp.name} - ${emp.job} - ${emp.salary} جنيه`, 20, 40 + (index * 10));
-    });
-    doc.save("Employee_Report.pdf");
-}
-
-updateTable();
-
-function toggleSpaceMode() {
-    document.body.classList.toggle("dark-mode");
-
-}
-
-function sendEmail(employee) {
-    emailjs.send("service_xxx", "template_xxx", {
-            to_email: "manager@example.com",
-            employee_name: employee.name,
-            attendance_status: employee.attendance
-        }, "user_xxx")
-        .then(() => {
-            alert("📧 تم إرسال الإشعار بنجاح!");
-        }, (error) => {
-            console.log("❌ خطأ في الإرسال:", error);
-        });
-}
-
-function markAttendance() {
-    let name = prompt("أدخل اسم الموظف:");
-    let found = false;
-
-    employees.forEach(emp => {
-        if (emp.name === name) {
-            emp.attendance = "✅ حضر";
-            sendEmail(emp);
-            found = true;
-        }
-    });
-
-    if (!found) {
-        alert("❌ الموظف غير موجود!");
+function verifyAndSaveUser(email, enteredOTP, firstName, lastName, number) {
+    if (otpStorage[email] && otpStorage[email] == enteredOTP) {
+        users.push({ email, firstName, lastName, number });
+        delete otpStorage[email]; // Remove OTP after successful verification
+        console.log("User registered successfully:", { email, firstName, lastName, number });
+        return true;
+    } else {
+        console.error("Invalid OTP.");
+        return false;
     }
-
-    saveData();
-    updateTable();
 }
+
+// Login Page Functionality
+function loginUser(email, password) {
+    const user = users.find(u => u.email === email);
+    if (!user) {
+        console.error("User not found.");
+        return false;
+    }
+    console.log(`Login successful for user: ${email}`);
+    return true; // For simplicity, password validation is skipped
+}
+
+// Homepage Logic
+function displayFeatures() {
+    const features = [
+        "إدارة الموظفين",
+        "تقارير وتحليلات",
+        "واجهة متجاوبة",
+    ];
+    features.forEach((feature, index) => {
+        console.log(`Feature ${index + 1}: ${feature}`);
+    });
+}
+
+function displayFeaturedEmployees() {
+    const employees = [
+        { name: "أحمد محمد", position: "مدير الموارد البشرية" },
+        { name: "سارة عبدالله", position: "أخصائية توظيف" },
+        { name: "خالد سعيد", position: "مدير التدريب" },
+    ];
+    employees.forEach(employee => {
+        console.log(`Employee: ${employee.name}, Position: ${employee.position}`);
+    });
+}
+
+// Example Simulations
+console.log("--- Registration Simulation ---");
+const otp = registerUser("example@example.com", "أحمد", "محمد", "0123456789");
+if (otp) {
+    const isRegistered = verifyAndSaveUser("example@example.com", otp, "أحمد", "محمد", "0123456789");
+    if (isRegistered) {
+        console.log("--- Login Simulation ---");
+        loginUser("example@example.com", "password123");
+    }
+}
+
+console.log("--- Homepage Simulation ---");
+displayFeatures();
+displayFeaturedEmployees();
